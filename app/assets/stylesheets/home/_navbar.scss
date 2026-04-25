@@ -1,0 +1,42 @@
+.navbar {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.navbar-soft {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .nav-link {
+  position: relative;
+  color: #333;
+  transition: color 0.2s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #000;
+    transition: all 0.3 ease;
+    transform: translateX(-50%);
+  }
+
+  &:hover {
+    color: #000;
+    transform: translateY(-1px);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.logo-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.6rem;
+  line-height: 1;
+}

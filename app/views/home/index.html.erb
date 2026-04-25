@@ -1,0 +1,68 @@
+<section class="hero py-5">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-md-6 col-lg-5 d-flex flex-column justify-content-center">
+        <h1 class="hero-title mb-3">
+          Cuidar de você <br>
+          <span class="text-muted">nunca foi tão leve</span>
+        </h1>
+
+        <p class="hero-label">
+          SAÚDE • BEM-ESTAR • EQUILÍBRIO
+        </p>
+
+        <p class="lead text-muted mb-4">
+          Conectamos você a profissionais qualificados para alcançar seus objetivos de forma simples e eficiente.
+        </p>
+
+        <div class="d-flex gap-3">
+          <%= link_to "Quero ser cliente!", "#", class: "btn btn-primary" %>
+          <%= link_to "Trabalhe conosco!", "#", class: "btn btn-soft" %>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-6 d-flex flex-column">
+        <div class="hero-image-wrapper text-center mb-4">
+          <%= image_tag "logo-vidaleve.jpeg", class: "hero-image" %>
+        </div>
+
+        <div class="stats-card p-4 rounded-4 text-center" data-controller="stats">
+
+          <p class="text-muted mb-3">
+            Pessoas que fazem parte da nossa cultura
+          </p>
+
+          <div class="d-flex justify-content-center gap-3 mb-3">
+            <button class="btn btn-pill btn-soft active"
+                    data-stats-target="button"
+                    data-action="click->stats#show"
+                    data-type="client">
+              Clientes
+            </button>
+
+            <button class="btn btn-pill btn-soft"
+                    data-stats-target="button"
+                    data-action="click->stats#show"
+                    data-type="professional">
+              Profissionais
+            </button>
+          </div>
+
+          <div class="stats-display p-4 rounded-3">
+
+            <div data-stats-target="panel" data-type="client">
+              <h2 class="fw-bold m-0" data-stats-target="number" data-value="1200">+1200</h2>
+            </div>
+
+            <div data-stats-target="panel" data-type="professional" class="d-none">
+              <h2 class="fw-bold m-0" data-stats-target="number" data-value="85">+85</h2>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
