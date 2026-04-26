@@ -1,0 +1,30 @@
+.dropdown-menu {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    padding: 0.5rem;
+    min-width: 220px;
+}
+
+.dropdown-menu .fw-semibold {
+    font-size: 0.95rem;
+}
+
+.dropdown-menu small {
+    font-size: 0.8rem;
+}
+
+.dropdown-item {
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+    transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: #f1f2f1;
+}
+
+.bi-person-circle {
+  font-size: 1.4rem;
+  color: #5c7556;
+}

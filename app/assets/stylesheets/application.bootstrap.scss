@@ -1,10 +1,8 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
-@import "home/navbar";
-@import "home/buttons";
-@import "home/hero_section";
-@import "home/cards";
-@import "global/alert";
+@import "home/core.scss";
+@import "global/core.scss";
+@import "clients/core.scss";
 
 :root {
   --green-primary: #5f7c5a;

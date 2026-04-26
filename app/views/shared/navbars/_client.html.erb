@@ -1,20 +1,54 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-soft">
   <div class="container">
 
-    <span class="navbar-brand fw-semibold">
-      VidaLeve
+    <span class="navbar-brand d-flex align-items-center gap-2">
+      <span class="logo-script">VidaLeve</span>
+      <i class="bi bi-feather text-success"></i>
     </span>
 
-    <div class="ms-auto d-flex align-items-center gap-3">
-      <span class="text-muted small">
-        <%= current_user.email %>
-      </span>
+    <div class="ms-auto d-flex align-items-center">
 
-      <%= button_to "Sair", destroy_user_session_path,
-        method: :delete,
-        class: "btn btn-soft",
-        form: { data: { turbo_confirm: "Tem certeza que deseja sair?" } } %>
+      <div class="dropdown">
+        <button class="avatar-btn"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+          <%= current_user.email.first.upcase %>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+
+          <li class="px-3 py-2 d-flex align-items-center gap-2">
+            <div class="avatar-btn" style="width:32px; height:32px; font-size:0.8rem;">
+              <%= current_user.email.first.upcase %>
+            </div>
+            <div>
+              <div class="fw-semibold"><%= current_user.email %></div>
+              <small class="text-muted">Cliente</small>
+            </div>
+          </li>
+
+          <li><hr class="dropdown-divider"></li>
+
+          <li>
+            <%= link_to "Ver detalhes", "#", class: "dropdown-item" %>
+          </li>
+
+          <li>
+            <%= link_to "Ver planos", "#", class: "dropdown-item" %>
+          </li>
+
+          <li><hr class="dropdown-divider"></li>
+
+          <li>
+            <%= button_to "Sair",
+              destroy_user_session_path,
+              method: :delete,
+              class: "dropdown-item text-danger" %>
+          </li>
+        </ul>
+      </div>
     </div>
-
   </div>
 </nav>
