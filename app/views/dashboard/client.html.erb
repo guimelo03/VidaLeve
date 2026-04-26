@@ -1,13 +1,31 @@
 <div class="container py-5">
   <h2 class="mb-4">
-    Olá, <%= current_user.email %>
+    Olá, <%= client_saudation %>
   </h2>
 
   <% unless current_user.has_complete_info? %>
-    <%= render "shared/onboard_modal"%>
+    <%= render "shared/onboard_modal" %>
   <% end %>
 
   <div class="row">
+
+    <% unless current_user.has_complete_info? %>
+      <div class="col-12">
+        <div class="bg-white p-4 rounded-4 shadow-sm mb-4 border border-warning-subtle">
+
+          <h5 class="mb-2">Complete seu perfil</h5>
+
+          <p class="text-muted mb-3">
+            Falta pouco para personalizarmos sua experiência.
+          </p>
+
+          <%= link_to "Completar agora",
+            onboarding_path,
+            class: "btn btn-primary" %>
+
+        </div>
+      </div>
+    <% end %>
 
     <div class="col-md-6 mb-4">
       <div class="p-4 bg-white rounded-4 shadow-sm">

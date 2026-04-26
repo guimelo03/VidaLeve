@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :redirect_on_onboarding, only: [ :show ]
 
   def show
     @user = current_user
@@ -22,6 +23,13 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def redirect_on_onboarding
+    return unless user_signed_in?
+    return if current_user.has_complete_info?
+
+    redirect_to client_dashboard_path, alert: "Complete seu perfil."
+  end
 
   def user_params
     params.require(:user).permit(
