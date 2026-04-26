@@ -24,7 +24,11 @@
   </head>
 
   <body>
-    <%= render "shared/navbars/home" %>
+    <% if user_signed_in? && current_user.client? %>
+      <%= render "shared/navbars/client" %>
+    <% else %>
+     <%= render "shared/navbars/home" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

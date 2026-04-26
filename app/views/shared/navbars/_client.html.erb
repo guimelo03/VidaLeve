@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg bg-white navbar-soft">
+  <div class="container">
+
+    <span class="navbar-brand fw-semibold">
+      VidaLeve
+    </span>
+
+    <div class="ms-auto d-flex align-items-center gap-3">
+      <span class="text-muted small">
+        <%= current_user.email %>
+      </span>
+
+      <%= button_to "Sair", destroy_user_session_path,
+        method: :delete,
+        class: "btn btn-soft",
+        form: { data: { turbo_confirm: "Tem certeza que deseja sair?" } } %>
+    </div>
+
+  </div>
+</nav>
