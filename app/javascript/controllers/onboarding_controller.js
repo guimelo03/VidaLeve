@@ -40,13 +40,44 @@ export default class extends Controller {
 
     inputs.forEach((input) => {
       if (!input.value.trim()) {
-        input.classList.add("is-invalid")
+        this.showError(input, "Campo obrigatório")
         valid = false
       } else {
-        inputs.classList.remove("is-invalid")
+        this.clearError(input)
       }
     })
-    
+
     return valid
+  }
+
+  showError(input, message) {
+    input.classList.add("is-invalid")
+
+    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains("error-message")) {
+      const error = document.createElement("div")
+      error.className = "error-message"
+      error.innerText = message
+      input.after(error)
+    }
+  }
+
+  clearError(input) {
+    input.classList.remove("is-invalid")
+
+    if (input.nextElementSibling?.classList.contains("error-message")) {
+      input.nextElementSibling.remove()
+    }
+  }
+
+  formatNumber(event) {
+    let value = event.target.value.replace(",", ".")
+    value = value.replace(/[^\d.]/g, "")
+
+    const parts = value.split(".")
+    if (parts.length > 2) {
+      value = parts[0] + "." + parts[1]
+    }
+
+    event.target.value = value
   }
 }

@@ -12,10 +12,15 @@
   <h1 class="hero-title mb-4">Vamos te conhecer melhor</h1>
 
   <%= form_with model: current_user, url: onboarding_path, method: :patch do |f| %>
-    <div data-onboarding-target="step">
-      <%= f.text_field :full_name, class: "form-control mb-3", placeholder: "Nome completo" %>
-      <%= f.number_field :age, class: "form-control mb-3", placeholder: "Idade" %>
-      <%= f.select :sex, User.sexes.keys.map { |s| [s.humanize, s] }, {}, class: "form-select mb-3" %>
+    <div data-onboarding-target="step" class="step">
+      <label class="form-label small text-muted">Nome completo</label>
+      <%= f.text_field :full_name, class: "form-control mb-4", placeholder: "Nome completo" %>
+
+      <label class="form-label small text-muted">Idade</label>
+      <%= f.number_field :age, class: "form-control mb-4", placeholder: "Idade" %>
+
+      <label class="form-label small text-muted">Gênero</label>
+      <%= f.select :sex, User.sexes.keys.map { |s| [s.humanize, s] }, {}, class: "form-select mb-4" %>
 
       <button type="button" class="btn btn-primary w-100"
               data-action="click->onboarding#next">
@@ -23,10 +28,16 @@
       </button>
     </div>
 
-    <div data-onboarding-target="step" class="d-none">
-      <%= f.text_field :city, class: "form-control mb-3", placeholder: "Cidade" %>
-      <%= f.text_field :state, class: "form-control mb-3", placeholder: "Estado" %>
-      <%= f.text_field :profession, class: "form-control mb-3", placeholder: "Profissão" %>
+    <div data-onboarding-target="step" class="step d-none">
+
+      <label class="form-label small text-muted">Cidade</label>
+      <%= f.text_field :city, class: "form-control mb-4", placeholder: "Ex: São Paulo, Curitiba..." %>
+
+      <label class="form-label small text-muted">Estado</label>
+      <%= f.text_field :state, class: "form-control mb-4", placeholder: "Ex: SP, RJ, PR..." %>
+
+      <label class="form-label small text-muted">Profissão atual</label>
+      <%= f.text_field :profession, class: "form-control mb-4", placeholder: "Profissão" %>
 
       <div class="d-flex gap-2">
         <button type="button" class="btn btn-soft w-50"
@@ -41,14 +52,25 @@
       </div>
     </div>
 
-    <div data-onboarding-target="step" class="d-none">
-      <%= f.number_field :current_weight, class: "form-control mb-3", placeholder: "Peso atual" %>
-      <%= f.number_field :height, class: "form-control mb-3", placeholder: "Altura" %>
+    <div data-onboarding-target="step" class="step d-none">
 
+      <label class="form-label small text-muted">Peso atual(Kg)</label>
+      <%= f.number_field :current_weight,
+        class: "form-control mb-4",
+        placeholder: "Peso (kg)",
+        data: { action: "input->onboarding#formatNumber" } %>
+
+      <label class="form-label small text-muted">Altura(cm)</label>
+      <%= f.number_field :height,
+        class: "form-control mb-4",
+        placeholder: "Altura (m)",
+        data: { action: "input->onboarding#formatNumber" } %>
+
+      <label class="form-label small text-muted">Principal objetivo</label>
       <%= f.select :main_goal,
         User.main_goals.keys.map { |g| [g.humanize, g] },
         {},
-        class: "form-select mb-3" %>
+        class: "form-select mb-4" %>
 
       <div class="d-flex gap-2">
         <button type="button" class="btn btn-soft w-50"
@@ -59,7 +81,6 @@
         <%= f.submit "Finalizar", class: "btn btn-primary w-50" %>
       </div>
     </div>
-
   <% end %>
 
 </div>
