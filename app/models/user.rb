@@ -4,6 +4,12 @@ class User < ApplicationRecord
 
   enum :role, { client: 0, professional: 1, admin: 2 }
   enum :sex, { male: 0, female: 1, other: 2 }
+  enum :main_goal, {
+    lose_weight: 0,
+    gain_muscle: 1,
+    improve_health: 2,
+    maintain: 3
+  }
 
   validates :role, presence: true
 

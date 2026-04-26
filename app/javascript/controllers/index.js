@@ -4,8 +4,14 @@
 
 import { application } from "./application"
 
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import OnboardingController from "./onboarding_controller"
+application.register("onboarding", OnboardingController)
 
 import StatsController from "./stats_controller"
 application.register("stats", StatsController)

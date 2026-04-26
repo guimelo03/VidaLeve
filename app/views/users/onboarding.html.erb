@@ -1,51 +1,64 @@
-<div class="container py-5" style="max-width: 520px;">
+<div class="container py-5" style="max-width: 520px;"
+     data-controller="onboarding">
 
-  <p class="hero-label">
-    COMPLETE SEU PERFIL
-  </p>
+  <div class="onboarding-progress mb-4 d-flex justify-content-center gap-2">
 
-  <h1 class="hero-title mb-3">
-    Vamos te conhecer melhor
-  </h1>
+    <div data-onboarding-target="indicator" class="progress-dot active"></div>
+    <div data-onboarding-target="indicator" class="progress-dot"></div>
+    <div data-onboarding-target="indicator" class="progress-dot"></div>
 
-  <p class="text-muted mb-4">
-    Essas informações nos ajudam a personalizar sua experiência.
-  </p>
+  </div>
+
+  <h1 class="hero-title mb-4">Vamos te conhecer melhor</h1>
 
   <%= form_with model: current_user, url: onboarding_path, method: :patch do |f| %>
+    <div data-onboarding-target="step">
+      <%= f.text_field :full_name, class: "form-control mb-3", placeholder: "Nome completo" %>
+      <%= f.number_field :age, class: "form-control mb-3", placeholder: "Idade" %>
+      <%= f.select :sex, User.sexes.keys.map { |s| [s.humanize, s] }, {}, class: "form-select mb-3" %>
 
-    <div class="mb-3">
-      <%= f.text_field :full_name, class: "form-control", placeholder: "Nome completo" %>
+      <button type="button" class="btn btn-primary w-100"
+              data-action="click->onboarding#next">
+        Próximo
+      </button>
     </div>
 
-    <div class="mb-3">
-      <%= f.number_field :age, class: "form-control", placeholder: "Idade" %>
+    <div data-onboarding-target="step" class="d-none">
+      <%= f.text_field :city, class: "form-control mb-3", placeholder: "Cidade" %>
+      <%= f.text_field :state, class: "form-control mb-3", placeholder: "Estado" %>
+      <%= f.text_field :profession, class: "form-control mb-3", placeholder: "Profissão" %>
+
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-soft w-50"
+                data-action="click->onboarding#back">
+          Voltar
+        </button>
+
+        <button type="button" class="btn btn-primary w-50"
+                data-action="click->onboarding#next">
+          Próximo
+        </button>
+      </div>
     </div>
 
-    <div class="mb-3">
-      <%= f.select :sex,
-        User.sexes.keys.map { |s| [s.humanize, s] },
+    <div data-onboarding-target="step" class="d-none">
+      <%= f.number_field :current_weight, class: "form-control mb-3", placeholder: "Peso atual" %>
+      <%= f.number_field :height, class: "form-control mb-3", placeholder: "Altura" %>
+
+      <%= f.select :main_goal,
+        User.main_goals.keys.map { |g| [g.humanize, g] },
         {},
-        class: "form-select" %>
-    </div>
+        class: "form-select mb-3" %>
 
-    <div class="mb-3">
-      <%= f.text_field :city, class: "form-control", placeholder: "Cidade" %>
-    </div>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-soft w-50"
+                data-action="click->onboarding#back">
+          Voltar
+        </button>
 
-    <div class="mb-3">
-      <%= f.text_field :state, class: "form-control", placeholder: "Estado" %>
+        <%= f.submit "Finalizar", class: "btn btn-primary w-50" %>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <%= f.text_field :profession, class: "form-control", placeholder: "Profissão" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.text_field :work_routine, class: "form-control", placeholder: "Rotina de trabalho" %>
-    </div>
-
-    <%= f.submit "Salvar e continuar", class: "btn btn-primary w-100" %>
 
   <% end %>
 

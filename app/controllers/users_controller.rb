@@ -21,7 +21,14 @@ class UsersController < ApplicationController
       :city,
       :state,
       :profession,
-      :work_routine
+      :work_routine,
+      :current_weight,
+      :height,
+      :abdominal_circunference,
+      :measured_with_tape,
+      :measurement_notes,
+      :main_goal,
+      :main_discomfort
     )
   end
 end

@@ -1,0 +1,22 @@
+.onboarding-progress {
+    margin-bottom: 1.5rem;
+}
+
+.progress-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1d5db;
+    transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+    width: 24px;
+    border-radius: 999px;
+    background: #5c7556;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 1px rgba(220, 53, 69, 0.2);
+}
