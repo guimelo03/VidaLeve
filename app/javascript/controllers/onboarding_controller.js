@@ -1,10 +1,23 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["step", "indicator"]
+  static targets = ["step", "indicator", "title", "subtitle"]
 
   connect() {
     this.current = 0
+
+    this.titles = [
+      "Seus dados básicos",
+      "Sua rotina",
+      "Seu objetivo"
+    ]
+  
+    this.subtitles = [
+      "Leva menos de 1 minuto",
+      "Queremos entender seu dia a dia",
+      "Isso nos ajuda a personalizar tudo pra você"
+    ]
+
     this.showStep()
   }
 
@@ -24,12 +37,11 @@ export default class extends Controller {
     })
 
     this.indicatorTargets.forEach((el, index) => {
-      if (index === this.current) {
-        el.classList.add("active")
-      } else {
-        el.classList.remove("active")
-      }
+      el.classList.toggle("active", index === this.current)
     })
+
+    this.titleTarget.innerText = this.titles[this.current]
+    this.subtitleTarget.innerText = this.subtitles[this.current]
   }
 
   validateStep() {
