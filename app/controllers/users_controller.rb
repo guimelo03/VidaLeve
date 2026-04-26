@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       :work_routine,
       :current_weight,
       :height,
-      :abdominal_circunference,
+      :abdominal_circumference,
       :measured_with_tape,
       :measurement_notes,
       :main_goal,

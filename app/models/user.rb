@@ -22,13 +22,24 @@ class User < ApplicationRecord
   end
 
   def check_complete_info
-    self.has_complete_info =
-    full_name.present? &&
-    age.present? &&
-    sex.present? &&
-    city.present? &&
-    state.present? &&
-    profession.present? &&
-    work_routine.present?
+    required = [
+      full_name,
+      age,
+      sex,
+      city,
+      state,
+      profession,
+      work_routine,
+      current_weight,
+      height,
+      main_goal,
+      main_discomfort
+    ]
+
+    if measured_with_tape?
+      required << abdominal_circumference
+    end
+
+    self.has_complete_info = required.all?(&:present?)
   end
 end

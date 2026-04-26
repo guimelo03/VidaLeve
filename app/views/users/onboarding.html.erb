@@ -88,6 +88,37 @@
         {},
         class: "form-select mb-4", data: { action: "input->onboarding#autoSave" } %>
 
+      <div class="form-check mb-3">
+        <%= f.check_box :measured_with_tape,
+          class: "form-check-input",
+          data: {
+            action: "change->onboarding#toggleCircumference",
+            onboarding_target: "checkbox"
+          } %>
+
+        <%= f.label :measured_with_tape,
+          "Conseguiu medir com fita?",
+          class: "form-check-label" %>
+      </div>
+
+      <div data-onboarding-target="circumferenceField" class="d-none">
+        <%= f.number_field :abdominal_circumference,
+          class: "form-control mb-4",
+          placeholder: "Circunferência abdominal (cm)",
+          data: { action: "input->onboarding#autoSave" } %>
+      </div>
+
+      <%= f.text_area :measurement_notes,
+        class: "form-control mb-4",
+        placeholder: "Observação (opcional)",
+        data: { action: "input->onboarding#autoSave" } %>
+
+      <%= f.text_area :main_discomfort,
+        class: "form-control mb-4",
+        placeholder: "O que mais te incomoda hoje?",
+        rows: 4,
+        data: { action: "input->onboarding#autoSave" } %>
+
       <div class="d-flex gap-2">
         <button type="button" class="btn btn-soft w-50"
                 data-action="click->onboarding#back">

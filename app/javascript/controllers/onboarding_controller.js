@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["step", "indicator", "title", "subtitle", "status"]
+  static targets = ["step", "indicator", "title", "subtitle", "status", "circumferenceField", "checkbox"]
 
   connect() {
     this.current = 0
@@ -20,6 +20,8 @@ export default class extends Controller {
     ]
 
     this.showStep()
+    this.toggleCircumference()
+    console.log(this.checkboxTarget.checked)
   }
 
   next() {
@@ -148,5 +150,15 @@ export default class extends Controller {
 
   showSaveError() {
     this.statusTarget.innerText = "Erro ao salvar"
+  }
+
+  toggleCircumference() {
+    if (!this.hasCircumferenceFieldTarget || !this.hasCheckboxTarget) return
+
+    if (this.checkboxTarget.checked) {
+      this.circumferenceFieldTarget.classList.remove("d-none")
+    } else {
+      this.circumferenceFieldTarget.classList.add("d-none")
+    }
   }
 }
