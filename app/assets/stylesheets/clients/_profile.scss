@@ -2,3 +2,26 @@
 .profile-sidebar p {
   text-align: center;
 }
+
+.profile-sidebar {
+  width: 240px;
+  text-align: center;
+}
+
+.profile-status {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.profile-status.complete {
+  background: #e6efe4;
+  color: #5c7556;
+}
+
+.profile-status.incomplete {
+  background: #f8e4e4;
+  color: #a94442;
+}
