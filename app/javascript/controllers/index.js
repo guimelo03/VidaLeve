@@ -10,6 +10,9 @@ application.register("flash", FlashController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import OnboardingController from "./onboarding_controller"
 application.register("onboarding", OnboardingController)
 

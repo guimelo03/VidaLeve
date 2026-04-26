@@ -49,6 +49,9 @@
       <label class="form-label small text-muted">Profissão atual</label>
       <%= f.text_field :profession, class: "form-control mb-4", placeholder: "Profissão", data: { action: "input->onboarding#autoSave" } %>
 
+      <label class="form-label small text-muted">Rotina de trabalho</label>
+      <%= f.text_field :work_routine, class: "form-control mb-4", placeholder: "Rotina profissional", data: { action: "input->onboarding#autoSave" } %>
+
       <div class="d-flex gap-2">
         <button type="button" class="btn btn-soft w-50"
                 data-action="click->onboarding#back">
@@ -69,8 +72,7 @@
         class: "form-control mb-4",
         placeholder: "Peso (kg)",
         data: {
-          action: "input->onboarding#formatNumber", 
-          action: "input->onboarding#autoSave" 
+          action: "input->onboarding#formatNumber input->onboarding#autoSave"
         } %>
 
       <label class="form-label small text-muted">Altura(cm)</label>
@@ -90,17 +92,21 @@
 
       <div class="form-check mb-3">
         <%= f.check_box :measured_with_tape,
-          class: "form-check-input",
-          data: {
-            action: "change->onboarding#toggleCircumference",
-            onboarding_target: "checkbox"
-          } %>
+          { class: "form-check-input",
+            data: {
+              action: "change->onboarding#toggleCircumference",
+              onboarding_target: "checkbox"
+            }
+          },
+          true,
+          false %>
 
         <%= f.label :measured_with_tape,
           "Conseguiu medir com fita?",
           class: "form-check-label" %>
       </div>
 
+      <label class="form-label small text-muted">Citcunferência abdominal</label>
       <div data-onboarding-target="circumferenceField" class="d-none">
         <%= f.number_field :abdominal_circumference,
           class: "form-control mb-4",
@@ -108,11 +114,13 @@
           data: { action: "input->onboarding#autoSave" } %>
       </div>
 
+      <label class="form-label small text-muted">Observações sobre a medida.</label>
       <%= f.text_area :measurement_notes,
         class: "form-control mb-4",
         placeholder: "Observação (opcional)",
         data: { action: "input->onboarding#autoSave" } %>
 
+      <label class="form-label small text-muted">Principal desconforto</label>
       <%= f.text_area :main_discomfort,
         class: "form-control mb-4",
         placeholder: "O que mais te incomoda hoje?",

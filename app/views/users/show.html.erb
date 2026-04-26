@@ -61,7 +61,7 @@
         </p>
 
         <% unless @user.has_complete_info? %>
-          <div class="mt-2">
+          <div class="mt-2 mb-2">
             <%= link_to "Completar cadastro", onboarding_path, class: "btn btn-primary btn-sm" %>
           </div>
         <% end %>
