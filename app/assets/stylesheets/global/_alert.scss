@@ -1,0 +1,34 @@
+.alert {
+    border: none;
+    border-radius: 14px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert-success {
+    background: #e4ede2;
+    color: #5c7556;
+}
+
+.alert-danger {
+    background: #f8e4e4;
+    color: #a94442;
+}
+
+.alert-secondary {
+    background: #f1f2f1;
+    color: #555;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+.btn-close {
+    filter: opacity(0.5);
+}

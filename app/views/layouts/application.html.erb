@@ -29,6 +29,15 @@
     <% else %>
      <%= render "shared/navbars/home" %>
     <% end %>
+
+    <div class="container mt-3" style="max-width: 520px;">
+      <% flash.each do |type, message| %>
+        <div data-controller="flash" class="alert <%= flash_class(type) %> mb-2">
+          <span><%= message %></span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
