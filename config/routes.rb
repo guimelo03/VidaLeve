@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get "onboarding", to: "users#onboarding"
   patch "onboarding", to: "users#update_onboarding"
+
+  get "profile", to: "users#show", as: :user_profile
 end
