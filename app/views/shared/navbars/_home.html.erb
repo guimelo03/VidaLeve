@@ -28,10 +28,13 @@
       </ul>
 
       <div class="d-flex align-items-center gap-3">
-        <%= link_to "Entrar", "#", class: "btn btn-soft btn-pill" %>
-        <%= link_to "Agende conosco", "#", class: "btn btn-primary btn-pill" %>
+        <% if user_signed_in? %>
+          <%= link_to "Dashboard", "#", class: "btn btn-soft btn-pill" %>
+        <% else %>
+          <%= link_to "Entrar", new_user_session_path, class: "btn btn-soft btn-pill" %>
+          <%= link_to "Converse conosco", "#", class: "btn btn-primary btn-pill" %>
+        <% end %>
       </div>
-
     </div>
   </div>
 </nav>
