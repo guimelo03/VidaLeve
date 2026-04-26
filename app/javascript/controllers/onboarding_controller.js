@@ -1,17 +1,18 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["step", "indicator", "title", "subtitle"]
+  static targets = ["step", "indicator", "title", "subtitle", "status"]
 
   connect() {
     this.current = 0
+    this.saving = false
 
     this.titles = [
       "Seus dados básicos",
       "Sua rotina",
       "Seu objetivo"
     ]
-  
+
     this.subtitles = [
       "Leva menos de 1 minuto",
       "Queremos entender seu dia a dia",
@@ -22,6 +23,8 @@ export default class extends Controller {
   }
 
   next() {
+    if (!this.validateStep()) return
+
     this.current++
     this.showStep()
   }
@@ -52,20 +55,23 @@ export default class extends Controller {
 
     inputs.forEach((input) => {
       if (!input.value.trim()) {
-        this.showError(input, "Campo obrigatório")
+        this.showFieldError(input, "Campo obrigatório")
         valid = false
       } else {
-        this.clearError(input)
+        this.clearFieldError(input)
       }
     })
 
     return valid
   }
 
-  showError(input, message) {
+  showFieldError(input, message) {
     input.classList.add("is-invalid")
 
-    if (!input.nextElementSibling || !input.nextElementSibling.classList.contains("error-message")) {
+    if (
+      !input.nextElementSibling ||
+      !input.nextElementSibling.classList.contains("error-message")
+    ) {
       const error = document.createElement("div")
       error.className = "error-message"
       error.innerText = message
@@ -73,7 +79,7 @@ export default class extends Controller {
     }
   }
 
-  clearError(input) {
+  clearFieldError(input) {
     input.classList.remove("is-invalid")
 
     if (input.nextElementSibling?.classList.contains("error-message")) {
@@ -91,5 +97,56 @@ export default class extends Controller {
     }
 
     event.target.value = value
+  }
+
+  autoSave() {
+    clearTimeout(this.timeout)
+
+    if (this.saving) return
+
+    this.showSaving()
+
+    this.timeout = setTimeout(() => {
+      this.save()
+    }, 800)
+  }
+
+  async save() {
+    this.saving = true
+
+    const form = this.element.querySelector("form")
+
+    try {
+      await fetch(form.action, {
+        method: "PATCH",
+        headers: {
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+          "Accept": "application/json"
+        },
+        body: new FormData(form)
+      })
+
+      this.showSaved()
+    } catch {
+      this.showSaveError()
+    } finally {
+      this.saving = false
+    }
+  }
+
+  showSaving() {
+    this.statusTarget.innerText = "Salvando..."
+  }
+
+  showSaved() {
+    this.statusTarget.innerText = "Salvo ✓"
+
+    setTimeout(() => {
+      this.statusTarget.innerText = ""
+    }, 2000)
+  }
+
+  showSaveError() {
+    this.statusTarget.innerText = "Erro ao salvar"
   }
 }

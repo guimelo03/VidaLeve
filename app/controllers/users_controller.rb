@@ -5,9 +5,15 @@ class UsersController < ApplicationController
 
   def update_onboarding
     if current_user.update(user_params)
-      redirect_to client_dashboard_path, notice: "Informações atualizadas!"
+      respond_to do |format|
+        format.html { redirect_to client_dashboard_path, notice: "Perfil completo!" }
+        format.json { head :ok }
+      end
     else
-      render :onboarding
+      respond_to do |format|
+        format.html { render :onboarding }
+        format.json { render json: { errors: current_user.errors }, status: :unprocessable_entity }
+      end
     end
   end
 
