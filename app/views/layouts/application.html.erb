@@ -24,10 +24,10 @@
   </head>
 
   <body>
-    <% if user_signed_in? && current_user.client? %>
-      <%= render "shared/navbars/client" %>
+    <% if current_page?(root_path) || !user_signed_in? %>
+      <%= render "shared/navbars/home" %>
     <% else %>
-     <%= render "shared/navbars/home" %>
+      <%= render "shared/navbars/client" %>
     <% end %>
 
     <div class="container mt-3" style="max-width: 520px;">
