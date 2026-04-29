@@ -26,7 +26,7 @@
 
       <div class="d-flex align-items-center gap-3">
         <% if user_signed_in? %>
-          <%= link_to "Dashboard", client_dashboard_path, class: "btn btn-primary btn-pill" %>
+          <%= link_to "Dashboard", dashboard_path_for(current_user), class: "btn btn-primary btn-pill" %>
         <% else %>
           <%= link_to "Entrar", new_user_session_path, class: "btn btn-soft btn-pill" %>
           <%= link_to "Converse conosco", "#", class: "btn btn-primary btn-pill" %>

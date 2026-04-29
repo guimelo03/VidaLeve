@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def update_onboarding
     if current_user.update(user_params)
       respond_to do |format|
-        format.html { redirect_to client_dashboard_path, notice: "Perfil completo!" }
+        format.html { redirect_to clients_dashboard_path, notice: "Perfil completo!" }
         format.json { head :ok }
       end
     else
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     return unless user_signed_in?
     return if current_user.has_complete_info?
 
-    redirect_to client_dashboard_path, alert: "Complete seu perfil."
+    redirect_to clients_dashboard_path, alert: "Complete seu perfil."
   end
 
   def user_params

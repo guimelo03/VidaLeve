@@ -1,0 +1,56 @@
+<div class="container py-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Detalhes do cliente</h2>
+
+    <%= link_to "Voltar",
+      admin_users_path,
+      class: "btn btn-soft" %>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6 mb-4">
+      <div class="bg-white p-4 rounded-4 shadow-sm">
+        <h5 class="mb-3">Dados pessoais</h5>
+
+        <p><strong>Nome:</strong> <%= @user.full_name %></p>
+        <p><strong>Email:</strong> <%= @user.email %></p>
+        <p><strong>Idade:</strong> <%= @user.age %></p>
+        <p><strong>Sexo:</strong> <%= @user.sex&.humanize %></p>
+        <p><strong>Cidade:</strong> <%= @user.city %> - <%= @user.state %></p>
+        <p><strong>Profissão:</strong> <%= @user.profession %></p>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="bg-white p-4 rounded-4 shadow-sm">
+        <h5 class="mb-3">Informações físicas</h5>
+
+        <p><strong>Peso:</strong> <%= @user.current_weight %> kg</p>
+        <p><strong>Altura:</strong> <%= @user.height %> m</p>
+
+        <p><strong>Mediu com fita:</strong>
+          <%= @user.measured_with_tape ? "Sim" : "Não" %>
+        </p>
+
+        <% if @user.measured_with_tape? %>
+          <p><strong>Circunferência:</strong> <%= @user.abdominal_circumference %> cm</p>
+        <% end %>
+
+        <% if @user.measurement_notes.present? %>
+          <p><strong>Observações:</strong> <%= @user.measurement_notes %></p>
+        <% end %>
+
+        <p><strong>Objetivo:</strong> <%= @user.main_goal&.humanize %></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bg-white p-4 rounded-4 shadow-sm">
+    <h5 class="mb-3">O que mais incomoda</h5>
+    <p><%= @user.main_discomfort %></p>
+  </div>
+
+</div>

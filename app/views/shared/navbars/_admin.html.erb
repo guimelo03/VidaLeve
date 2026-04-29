@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-soft bg-white">
+
+  <div class="container">
+
+    <%= render "shared/logo" %>
+    <%# <%= link_to "VidaLeve", admin_dashboard_path, class: "navbar-brand logo-script" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarAdmin">
+
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <%= link_to "Dashboard", admin_dashboard_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Usuários", admin_users_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Relatórios", "#", class: "nav-link" %>
+        </li>
+
+      </ul>
+
+      <div class="d-flex align-items-center gap-3">
+
+        <%= link_to "Ver site", root_path, class: "btn btn-soft" %>
+
+        <div class="dropdown">
+
+          <button class="btn btn-soft d-flex align-items-center gap-2"
+                  data-bs-toggle="dropdown">
+
+            <div class="avatar-sm">
+              <%= current_user.email.first.upcase %>
+            </div>
+
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+
+            <li>
+              <span class="dropdown-item-text text-muted small">
+                <%= current_user.email %>
+              </span>
+            </li>
+
+            <li><hr class="dropdown-divider"></li>
+
+            <li>
+              <%= link_to "Sair",
+                destroy_user_session_path,
+                data: { turbo_method: :delete },
+                class: "dropdown-item text-danger" %>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</nav>

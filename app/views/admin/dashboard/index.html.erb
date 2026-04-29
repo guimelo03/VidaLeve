@@ -1,0 +1,65 @@
+<div class="container py-5">
+
+  <h2 class="mb-4">Painel administrativo</h2>
+
+  <div class="row mb-4">
+
+    <div class="col-md-4">
+      <div class="p-4 bg-white rounded-4 shadow-sm">
+        <h6 class="text-muted">Profissionais</h6>
+        <h3>0</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-4 bg-white rounded-4 shadow-sm">
+        <h6 class="text-muted">Clientes</h6>
+        <h3><%= User.client.count %></h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="p-4 bg-white rounded-4 shadow-sm">
+        <h6 class="text-muted">Admins</h6>
+        <h3><%= User.admin.count %></h3>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bg-white p-4 rounded-4 shadow-sm">
+
+    <h5 class="mb-3">Usuários recentes</h5>
+
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Cargo</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% User.last(5).each do |user| %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td>
+              <%= user.has_complete_info? ? "Completo" : "Incompleto" %>
+            </td>
+            <td><%= link_to "Ver detalhes",
+              admin_user_path(user),
+              class: "btn btn-sm btn-soft btn-pill" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

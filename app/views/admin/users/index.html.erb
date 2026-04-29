@@ -1,0 +1,55 @@
+<div class="container py-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Usuários</h2>
+  </div>
+
+  <div class="bg-white p-4 rounded-4 shadow-sm">
+
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Cargo</th>
+          <th>Status</th>
+          <th>Criado em</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+
+            <td>
+              <span class="badge bg-light text-dark">
+                <%= user.role %>
+              </span>
+            </td>
+
+            <td>
+              <% if user.has_complete_info? %>
+                <span class="badge bg-success">Completo</span>
+              <% else %>
+                <span class="badge bg-warning text-dark">Incompleto</span>
+              <% end %>
+            </td>
+
+            <td>
+              <%= l(user.created_at, format: :short) %>
+            </td>
+
+            <td><%= link_to "Ver detalhes",
+              admin_user_path(user),
+              class: "btn btn-sm btn-soft btn-pill" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

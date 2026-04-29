@@ -24,11 +24,7 @@
   </head>
 
   <body>
-    <% if current_page?(root_path) || !user_signed_in? %>
-      <%= render "shared/navbars/home" %>
-    <% else %>
-      <%= render "shared/navbars/client" %>
-    <% end %>
+    <%= render_navbar %>
 
     <div class="container mt-3" style="max-width: 520px;">
       <% flash.each do |type, message| %>
