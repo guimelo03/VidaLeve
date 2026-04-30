@@ -1,6 +1,5 @@
 class Clients::ProfilesController < Clients::BaseController
-  before_action :authenticate_user!
-
+  before_action :require_complete_profile!, only: [ :edit, :update ]
   def show
     @user = current_user
   end
@@ -17,27 +16,5 @@ class Clients::ProfilesController < Clients::BaseController
     else
       render :edit, status: :unprocessable_entity
     end
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(
-      :full_name,
-      :age,
-      :phone,
-      :sex,
-      :city,
-      :state,
-      :profession,
-      :work_routine,
-      :current_weight,
-      :height,
-      :abdominal_circumference,
-      :measured_with_tape,
-      :measurement_notes,
-      :main_goal,
-      :main_discomfort
-    )
   end
 end

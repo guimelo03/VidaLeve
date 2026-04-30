@@ -11,11 +11,14 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index", as: :dashboard
     resources :diets, only: [ :show ]
     resource :profile, only: [ :show, :edit, :update ]
+    resource :onboarding, only: [ :show, :update ]
   end
 
   get "users/onboarding"
   get "dashboard/client"
+
   devise_for :users
+
   get "home/index"
   root "home#index"
 
@@ -25,11 +28,4 @@ Rails.application.routes.draw do
   end
 
   get "admin/dashboard", to: "admin/dashboard#index", as: :admin_dashboard
-
-  get "onboarding", to: "users#onboarding"
-  patch "onboarding", to: "users#update_onboarding"
-
-  # get "profile", to: "users#show", as: :user_profile
-  # get "profile/edit", to: "users#edit", as: :edit_user_profile
-  # patch "profile", to: "users#update"
 end

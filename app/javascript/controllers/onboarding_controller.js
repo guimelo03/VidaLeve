@@ -114,9 +114,13 @@ export default class extends Controller {
   }
 
   async save() {
-    this.saving = true
+    if (this.saving) return
 
     const form = this.element.querySelector("form")
+
+    if (form.dataset.submitting === "true") return
+
+    this.saving = true
 
     try {
       await fetch(form.action, {
@@ -134,6 +138,11 @@ export default class extends Controller {
     } finally {
       this.saving = false
     }
+  }
+
+  submitStart() {
+    const form = this.element.querySelector("form")
+    form.dataset.submitting = "true"
   }
 
   showSaving() {

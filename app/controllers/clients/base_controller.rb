@@ -16,4 +16,11 @@ class Clients::BaseController < ApplicationController
       redirect_to admin_dashboard_path
     end
   end
+
+  def require_complete_profile!
+    return if current_user.has_complete_info?
+
+    redirect_to clients_profile_path,
+      alert: "Complete seu perfil primeiro."
+  end
 end

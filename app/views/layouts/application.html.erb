@@ -34,6 +34,11 @@
         </div>
       <% end %>
     </div>
+
     <%= yield %>
+
+    <% if user_signed_in? && !current_user.has_complete_info? %>
+      <%= render "shared/onboard_modal" %>
+    <% end %>
   </body>
 </html>
