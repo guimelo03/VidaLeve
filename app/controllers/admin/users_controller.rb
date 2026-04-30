@@ -5,5 +5,6 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.client.find(params[:id])
+    @diets = @user.diets.includes(meals: :meal_items)
   end
 end

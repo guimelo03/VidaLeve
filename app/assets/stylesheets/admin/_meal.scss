@@ -1,0 +1,46 @@
+.meal-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.item-row {
+  transition: all 0.2s ease;
+}
+
+.item-row:hover {
+  transform: scale(1.01);
+}
+
+.btn-danger-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 999px;
+  border: 1px solid #fca5a5;
+
+  background-color: #fff;
+  color: #dc2626;
+
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    background-color: #dc2626;
+    color: #fff;
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

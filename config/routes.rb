@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get "diets/new"
+    get "diets/create"
     get "users/index"
     get "dashboard/index"
-    resources :users, only: [ :index, :show ]
+    resources :users, only: [ :index, :show ] do
+      resources :diets, only: [ :new, :create ]
+    end
   end
 
   namespace :clients do
@@ -21,8 +25,6 @@ Rails.application.routes.draw do
   end
 
   get "admin/dashboard", to: "admin/dashboard#index", as: :admin_dashboard
-
-
 
   get "onboarding", to: "users#onboarding"
   patch "onboarding", to: "users#update_onboarding"

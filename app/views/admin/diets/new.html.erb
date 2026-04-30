@@ -1,0 +1,92 @@
+<div class="container py-5" data-controller="nested-form" style="max-width: 720px;">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Nova dieta</h2>
+
+    <%= link_to "Voltar",
+      admin_user_path(@user),
+      class: "btn btn-soft btn-pill" %>
+  </div>
+
+  <div class="bg-white p-4 rounded-4 shadow-sm">
+
+    <%= form_with model: [ :admin, @user, @diet ] do |f| %>
+
+      <%= f.text_field :title,
+        class: "form-control mb-4",
+        placeholder: "Nome da dieta" %>
+
+      <h5 class="mb-3">Refeições</h5>
+        <div data-nested-form-target="meals">
+        </div>
+
+        <button type="button"
+            class="btn btn-soft btn-pill w-100 mt-4 py-2"
+            data-action="click->nested-form#addMeal">
+
+            + Adicionar refeição
+
+        </button>
+
+
+      <%= f.submit "Salvar dieta",
+        class: "btn btn-primary btn-pill w-100 mt-3" %>
+
+    <% end %>
+
+  </div>
+
+    <template data-nested-form-target="mealTemplate">
+        <div class="meal-card p-4 mb-4 position-relative" data-meal data-removable>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <input type="text"
+                name="diet[meals_attributes][][name]"
+                class="form-control fw-semibold flex-grow-1"
+                placeholder="Ex: Café da manhã">
+
+            <button type="button"
+                class="btn btn-danger-icon ms-2"
+                data-action="click->nested-form#removeElement">
+                <i class="bi bi-x"></i>
+            </button>
+
+            </div>
+
+            <div data-items-container></div>
+
+            <div data-items-template>
+                <template>
+                    <div class="d-flex gap-2 mb-2 align-items-center item-row" data-removable>
+
+                        <input type="text"
+                            name="diet[meals_attributes][][meal_items_attributes][][name]"
+                            class="form-control flex-grow-1"
+                            placeholder="Alimento">
+
+                        <input type="text"
+                            name="diet[meals_attributes][][meal_items_attributes][][quantity]"
+                            class="form-control flex-grow-1"
+                            placeholder="Qtd">
+
+                        <button type="button"
+                            class="btn btn-danger-icon ms-2"
+                            data-action="click->nested-form#removeElement">
+                            <i class="bi bi-x"></i>
+                        </button>
+
+                    </div>
+                </template>
+            </div>
+
+            <button type="button"
+                class="btn btn-soft btn-pill mt-2 d-flex align-items-center gap-2"
+                data-action="click->nested-form#addItem">
+                + Adicionar alimento
+            </button>
+
+        </div>
+    </template>
+
+</div>

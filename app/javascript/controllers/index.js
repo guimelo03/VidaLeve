@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import NestedFormController from "./nested_form_controller"
+application.register("nested-form", NestedFormController)
+
 import OnboardingController from "./onboarding_controller"
 application.register("onboarding", OnboardingController)
 

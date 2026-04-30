@@ -53,4 +53,52 @@
     <p><%= @user.main_discomfort %></p>
   </div>
 
+  <div class="bg-white p-4 rounded-4 shadow-sm mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">Dietas do cliente</h5>
+
+      <%= link_to "Nova dieta",
+        new_admin_user_diet_path(@user),
+        class: "btn btn-primary btn-pill btn-sm" %>
+    </div>
+
+    <% if @diets.any? %>
+
+      <% @diets.each do |diet| %>
+
+        <div class="border rounded-4 p-3 mb-3">
+
+          <h6 class="fw-semibold mb-2"><%= diet.title %></h6>
+
+          <% diet.meals.each do |meal| %>
+            <div class="mb-2">
+
+              <strong><%= meal.name %></strong>
+
+              <ul class="mb-2">
+                <% meal.meal_items.each do |item| %>
+                  <li>
+                    <%= item.name %> — <%= item.quantity %>
+                  </li>
+                <% end %>
+              </ul>
+
+            </div>
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+    <% else %>
+
+      <p class="text-muted mb-0">
+        Nenhuma dieta cadastrada ainda.
+      </p>
+
+    <% end %>
+
+  </div>
+
 </div>

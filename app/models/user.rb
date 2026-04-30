@@ -11,6 +11,8 @@ class User < ApplicationRecord
     maintain: 3
   }
 
+  has_many :diets, dependent: :destroy
+
   validates :role, presence: true
 
   before_save :check_complete_info
