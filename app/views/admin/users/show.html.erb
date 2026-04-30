@@ -67,25 +67,18 @@
 
       <% @diets.each do |diet| %>
 
-        <div class="border rounded-4 p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-center border rounded-4 p-3 mb-3">
 
-          <h6 class="fw-semibold mb-2"><%= diet.title %></h6>
+          <div>
+            <h6 class="fw-semibold mb-1"><%= diet.title %></h6>
+            <small class="text-muted">
+              Criada em <%= diet.created_at.strftime("%d/%m/%Y") %>
+            </small>
+          </div>
 
-          <% diet.meals.each do |meal| %>
-            <div class="mb-2">
-
-              <strong><%= meal.name %></strong>
-
-              <ul class="mb-2">
-                <% meal.meal_items.each do |item| %>
-                  <li>
-                    <%= item.name %> — <%= item.quantity %>
-                  </li>
-                <% end %>
-              </ul>
-
-            </div>
-          <% end %>
+          <%= link_to "Ver detalhes",
+            admin_user_diet_path(@user, diet),
+            class: "btn btn-soft btn-sm" %>
 
         </div>
 

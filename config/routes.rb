@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get "diets/new"
-    get "diets/create"
     get "users/index"
     get "dashboard/index"
     resources :users, only: [ :index, :show ] do
-      resources :diets, only: [ :new, :create ]
+      resources :diets, only: [ :new, :create, :show, :edit, :update, :destroy ]
     end
   end
 

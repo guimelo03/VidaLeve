@@ -1,0 +1,58 @@
+<div class="container py-5" style="max-width: 720px;">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><%= @diet.title %></h2>
+
+    <div class="d-flex gap-2">
+
+      <%= link_to "Editar",
+        edit_admin_user_diet_path(@user, @diet),
+        class: "btn btn-primary btn-pill" %>
+
+      <%= link_to "Voltar",
+        admin_user_path(@user),
+        class: "btn btn-soft btn-pill fw-semibold" %>
+
+      <%= link_to admin_user_diet_path(@user, @diet),
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Tem certeza?"
+        },
+        class: "btn btn-danger-icon" do %>
+
+        <i class="bi bi-trash"></i>
+
+      <% end %>
+
+    </div>
+  </div>
+
+  <ul class="mb-0 ps-3">
+    <% @diet.meals.each do |meal| %>
+
+      <div class="meal-card p-4 mb-4">
+
+        <h5 class="fw-semibold mb-3"><%= meal.name %></h5>
+
+        <% if meal.meal_items.any? %>
+
+          <% meal.meal_items.each do |item| %>
+            <div class="d-flex justify-content-between mb-2">
+              <li>
+                <%= item.name %> — <%= item.quantity %>
+              </li>
+            </div>
+          <% end %>
+
+        <% else %>
+
+          <p class="text-muted mb-0">Nenhum alimento cadastrado</p>
+
+        <% end %>
+
+      </div>
+
+    <% end %>
+  </ul>
+
+</div>

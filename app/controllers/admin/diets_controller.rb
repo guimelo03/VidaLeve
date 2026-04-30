@@ -1,18 +1,39 @@
 class Admin::DietsController < ApplicationController
   before_action :set_user
+  before_action :set_diet, onlu: [ :edit, :update, :show, :update ]
   def new
     @diet = @user.diets.build
     @diet.meals.build.meal_items.build
   end
 
-  def create
-    @diet = @user.diets.build(diet_params)
+  def show
+    @diet = @user.diets.includes(meals: :meal_items).find(params[:id])
+  end
 
+  def edit
+  end
+
+  def create
     if @diet.save
       redirect_to admin_user_path(@user), notice: "Dieta criada com sucesso"
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def update
+    Rails.logger.debug "DIET PERSISTED? #{@diet.persisted?}"
+
+    if @diet.update(diet_params)
+      redirect_to admin_user_diet_path(@user, @diet), notice: "Dieta atualizada"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @diet.destroy
+    redirect_to admin_user_path(@user), notice: "Dieta excluída com sucesso"
   end
 
   private
@@ -21,12 +42,16 @@ class Admin::DietsController < ApplicationController
     @user = User.client.find(params[:user_id])
   end
 
+  def set_diet
+    @diet = @user.diets.find(params[:id])
+  end
+
   def diet_params
     params.require(:diet).permit(
       :title,
       meals_attributes: [
         :id, :name, :_destroy,
-        meals_items_attributes: [
+        meal_items_attributes: [
           :id, :name, :quantity, :_destroy
         ]
       ]
