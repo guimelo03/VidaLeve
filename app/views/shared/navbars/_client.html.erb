@@ -6,12 +6,14 @@
     <div class="ms-auto d-flex align-items-center">
 
       <div class="dropdown">
-        <button class="avatar-btn"
+        <%= link_to "Home", root_path, class: "btn btn-soft btn-pill" %>
+
+        <button class="btn-primary btn-pill"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
 
-          <%= current_user.email.first.upcase %>
+          <i class="bi bi-people"></i>
         </button>
 
         <ul class="dropdown-menu dropdown-menu-end">

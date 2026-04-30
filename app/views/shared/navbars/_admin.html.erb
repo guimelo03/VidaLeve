@@ -1,5 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-soft bg-white">
-
+<nav class="navbar navbar-expand-lg bg-white py-3 navbar-soft">
   <div class="container">
 
     <%= render "shared/logo" %>
@@ -10,7 +9,7 @@
 
     <div class="collapse navbar-collapse" id="navbarAdmin">
 
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mx-auto gap-4">
 
         <li class="nav-item">
           <%= link_to "Dashboard", admin_dashboard_path, class: "nav-link" %>
@@ -28,15 +27,15 @@
 
       <div class="d-flex align-items-center gap-3">
 
-        <%= link_to "Ver site", root_path, class: "btn btn-soft" %>
+        <%= link_to "Ver site", root_path, class: "btn btn-soft btn-pill" %>
 
         <div class="dropdown">
 
-          <button class="btn btn-soft d-flex align-items-center gap-2"
+          <button class="btn btn-primary btn-pill d-flex align-items-center gap-2"
                   data-bs-toggle="dropdown">
 
             <div class="avatar-sm">
-              <%= current_user.email.first.upcase %>
+              <i class="bi bi-gear"></i>
             </div>
 
           </button>

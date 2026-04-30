@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.client.order(created_at: :desc).limit(50)
+    @users = User.client.page(params[:page]).per(10)
   end
 
   def show
