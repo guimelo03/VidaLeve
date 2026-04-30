@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :clients do
     get "dashboard", to: "dashboard#index", as: :dashboard
+    resources :diets, only: [ :show ]
   end
 
   get "users/onboarding"

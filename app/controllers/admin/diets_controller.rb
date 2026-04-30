@@ -1,6 +1,6 @@
 class Admin::DietsController < ApplicationController
   before_action :set_user
-  before_action :set_diet, onlu: [ :edit, :update, :show, :update ]
+  before_action :set_diet, only: [ :edit, :update, :show, :update, :destroy ]
   def new
     @diet = @user.diets.build
     @diet.meals.build.meal_items.build
@@ -14,6 +14,8 @@ class Admin::DietsController < ApplicationController
   end
 
   def create
+    @diet = @user.diets.build(diet_params)
+
     if @diet.save
       redirect_to admin_user_path(@user), notice: "Dieta criada com sucesso"
     else

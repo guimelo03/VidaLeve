@@ -1,15 +1,21 @@
 .meal-card {
   background: #fff;
   border-radius: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #f1f5f9;
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: all 0.2s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
 }
 
 .item-row {
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .item-row:hover {
   transform: scale(1.01);
+  background-color: #f8fafc;
 }
 
