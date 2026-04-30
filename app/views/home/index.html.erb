@@ -17,8 +17,12 @@
         </p>
 
         <div class="d-flex gap-3">
-          <%= link_to "Quero ser cliente!", new_user_registration_path, class: "btn btn-primary" %>
-          <%= link_to "Trabalhe conosco!", "#", class: "btn btn-soft" %>
+          <%= link_to new_user_registration_path,
+            class: "btn btn-primary btn-pill btn-lg d-flex align-items-center gap-2" do %>
+            <i class="bi bi-person"></i>
+            Quero ser cliente!
+          <% end %>
+          <%= link_to "Trabalhe conosco!", "#", class: "btn btn-soft btn-pill btn-lg" %>
         </div>
       </div>
 
