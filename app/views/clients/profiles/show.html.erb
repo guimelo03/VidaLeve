@@ -90,12 +90,6 @@
           <%= @user.email %>
         </p>
 
-        <% unless @user.has_complete_info? %>
-          <div class="mt-2 mb-2">
-            <%= link_to "Completar cadastro", clients_onboarding_path, class: "btn btn-primary btn-pill btn-sm" %>
-          </div>
-        <% end %>
-
         <span class="profile-status <%= @user.has_complete_info? ? 'complete' : 'incomplete' %>">
           <%= @user.has_complete_info? ? "Cadastro completo" : "Cadastro incompleto" %>
         </span>
