@@ -15,7 +15,16 @@ class User < ApplicationRecord
 
   validates :role, presence: true
 
+  before_validation :normalize_phone
+
   before_save :check_complete_info
+
+
+  def normalize_phone
+    return if phone.blank?
+
+    self.phone = phone.gsub(/\D/, "")
+  end
 
   private
 

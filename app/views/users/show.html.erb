@@ -15,7 +15,7 @@
           <div class="bg-white p-4 rounded-4 shadow-sm h-100">
             <h5 class="mb-3">Dados pessoais</h5>
 
-            <p><strong>Telefone/Celular:</strong> <%= @user.phone %></p>
+            <p><strong>Telefone/Celular:</strong> <%= format_phone(@user.phone) %></p>
             <p><strong>Idade:</strong> <%= @user.age %></p>
             <p><strong>Sexo:</strong> <%= @user.sex&.humanize %></p>
             <p><strong>Cidade:</strong> <%= @user.city %> - <%= @user.state %></p>

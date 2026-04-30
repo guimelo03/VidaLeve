@@ -17,4 +17,14 @@ module ApplicationHelper
   def render_navbar
     render navbar_partial
   end
+
+  def format_phone(phone)
+    return "" if phone.blank?
+
+    if phone.length == 11
+      phone.gsub(/(\d{2})(\d{5})(\d{4})/, '(\1) \2-\3')
+    else
+      phone.gsub(/(\d{2})(\d{4})(\d{4})/, '(\1) \2-\3')
+    end
+  end
 end

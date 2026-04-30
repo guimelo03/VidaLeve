@@ -40,6 +40,9 @@
       <%= f.telephone_field :phone,
         class: "form-control",
         placeholder: "(11) 99999-9999",
+        inputmode: "numeric",
+        pattern: "[0-9]*",
+        data: { controller: "phone"},
         required: true %>
 
       <label class="form-label small text-muted">Gênero</label>

@@ -19,6 +19,9 @@ application.register("nested-form", NestedFormController)
 import OnboardingController from "./onboarding_controller"
 application.register("onboarding", OnboardingController)
 
+import PhoneController from "./phone_controller"
+application.register("phone", PhoneController)
+
 import StatsController from "./stats_controller"
 application.register("stats", StatsController)
 
