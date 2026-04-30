@@ -11,10 +11,10 @@
       <%= f.password_field :password, class: "form-control", placeholder: "Senha" %>
     </div>
 
-    <%= f.submit "Entrar", class: "btn btn-primary w-100" %>
+    <%= f.submit "Entrar", class: "btn btn-primary w-100 btn-pill" %>
   <% end %>
 
   <div class="mt-3 text-center">
-    <%= link_to "Criar conta", new_registration_path(resource_name) %>
+    <%= link_to "Criar conta!", new_registration_path(resource_name), class: "btn btn-soft btn-pill" %>
   </div>
 </div>
