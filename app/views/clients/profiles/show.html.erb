@@ -6,7 +6,7 @@
       Voltar
     <% end %>
 
-    <%= link_to edit_user_profile_path,
+    <%= link_to edit_clients_profile_path,
       class: "btn btn-primary btn-pill" do %>
       <i class="bi bi-pencil"></i>
       Editar
@@ -18,36 +18,36 @@
 
       <div class="row">
         <div class="col-md-6 mb-4">
-          <%= render "users/profile_section", title: "Dados pessoais" do %>
+          <%= render "clients/profiles/profile_section", title: "Dados pessoais" do %>
 
-            <%= render "users/profile_field", label: "Telefone", value: format_phone(@user.phone) %>
-            <%= render "users/profile_field", label: "Idade", value: @user.age %>
-            <%= render "users/profile_field", label: "Sexo", value: @user.sex&.humanize %>
-            <%= render "users/profile_field", label: "Cidade", value: "#{@user.city} - #{@user.state}" %>
-            <%= render "users/profile_field", label: "Profissão", value: @user.profession %>
-            <%= render "users/profile_field", label: "Rotina", value: @user.work_routine %>
+            <%= render "clients/profiles/profile_field", label: "Telefone", value: format_phone(@user.phone) %>
+            <%= render "clients/profiles/profile_field", label: "Idade", value: @user.age %>
+            <%= render "clients/profiles/profile_field", label: "Sexo", value: @user.sex&.humanize %>
+            <%= render "clients/profiles/profile_field", label: "Cidade", value: "#{@user.city} - #{@user.state}" %>
+            <%= render "clients/profiles/profile_field", label: "Profissão", value: @user.profession %>
+            <%= render "clients/profiles/profile_field", label: "Rotina", value: @user.work_routine %>
 
           <% end %>
         </div>
 
         <div class="col-md-6 mb-4">
-          <%= render "users/profile_section", title: "Informações fisiológicas" do %>
+          <%= render "clients/profiles/profile_section", title: "Informações fisiológicas" do %>
 
-            <%= render "users/profile_field", label: "Peso", value: "#{@user.current_weight} kg" %>
-            <%= render "users/profile_field", label: "Altura", value: "#{@user.height} m" %>
-            <%= render "users/profile_field", label: "Circunferência", value: "#{@user.abdominal_circumference} cm" %>
+            <%= render "clients/profiles/profile_field", label: "Peso", value: "#{@user.current_weight} kg" %>
+            <%= render "clients/profiles/profile_field", label: "Altura", value: "#{@user.height} m" %>
+            <%= render "clients/profiles/profile_field", label: "Circunferência", value: "#{@user.abdominal_circumference} cm" %>
 
-            <%= render "users/profile_field",
+            <%= render "clients/profiles/profile_field",
               label: "Mediu com fita",
               value: @user.measured_with_tape ? "Sim" : "Não" %>
 
             <% if @user.measurement_notes.present? %>
-              <%= render "users/profile_field",
+              <%= render "clients/profiles/profile_field",
                 label: "Observação",
                 value: @user.measurement_notes %>
             <% end %>
 
-            <%= render "users/profile_field",
+            <%= render "clients/profiles/profile_field",
               label: "Objetivo",
               value: @user.main_goal&.humanize %>
 
@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-12">
-          <%= render "users/profile_section", title: "O que mais incomoda" do %>
+          <%= render "clients/profiles/profile_section", title: "O que mais incomoda" do %>
             <p><%= @user.main_discomfort.presence || "-" %></p>
           <% end %>
         </div>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :clients do
     get "dashboard", to: "dashboard#index", as: :dashboard
     resources :diets, only: [ :show ]
+    resource :profile, only: [ :show, :edit, :update ]
   end
 
   get "users/onboarding"
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
   get "onboarding", to: "users#onboarding"
   patch "onboarding", to: "users#update_onboarding"
 
-  get "profile", to: "users#show", as: :user_profile
-  get "profile/edit", to: "users#edit", as: :edit_user_profile
-  patch "profile", to: "users#update"
+  # get "profile", to: "users#show", as: :user_profile
+  # get "profile/edit", to: "users#edit", as: :edit_user_profile
+  # patch "profile", to: "users#update"
 end

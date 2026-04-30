@@ -4,7 +4,7 @@
     <h5 class="mb-0"><%= title %></h5>
 
     <% unless editable %>
-      <%= link_to edit_user_profile_path,
+      <%= link_to edit_clients_profile_path,
         class: "btn btn-soft btn-pill btn-sm d-flex align-items-center gap-1" do %>
         <i class="bi bi-pencil"></i>
         Editar
@@ -13,7 +13,7 @@
   </div>
 
   <% if editable %>
-    <%= form_with model: user, url: user_profile_path, method: :patch do |f| %>
+    <%= form_with model: user, url: clients_profile_path, method: :patch do |f| %>
 
       <%= render "users/profile_field",
         label: "Nome",
@@ -43,7 +43,7 @@
       <% end %>
 
       <div class="d-flex justify-content-end gap-2 mt-4">
-        <%= link_to "Cancelar", user_profile_path, class: "btn btn-soft btn-pill" %>
+        <%= link_to "Cancelar", clients_profile_path, class: "btn btn-soft btn-pill" %>
         <%= f.submit "Salvar", class: "btn btn-primary btn-pill" %>
       </div>
 

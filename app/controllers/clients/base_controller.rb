@@ -3,6 +3,8 @@ class Clients::BaseController < ApplicationController
   before_action :authorize_client!
   before_action :require_client
 
+  include UserParams
+
   private
 
   def authorize_client!
