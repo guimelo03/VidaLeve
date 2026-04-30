@@ -27,6 +27,7 @@ class User < ApplicationRecord
     required = [
       full_name,
       age,
+      phone,
       sex,
       city,
       state,

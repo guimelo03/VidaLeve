@@ -36,6 +36,12 @@
       <label class="form-label small text-muted">Idade</label>
       <%= f.number_field :age, class: "form-control mb-4", placeholder: "Idade", data: { action: "input->onboarding#autoSave" } %>
 
+      <label class="form-label small text-muted">Telefone</label>
+      <%= f.telephone_field :phone,
+        class: "form-control",
+        placeholder: "(11) 99999-9999",
+        required: true %>
+
       <label class="form-label small text-muted">Gênero</label>
       <%= f.select :sex, User.sexes.keys.map { |s| [s.humanize, s] }, {}, class: "form-select mb-4", data: { action: "input->onboarding#autoSave" } %>
 

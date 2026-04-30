@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :full_name,
       :age,
+      :phone,
       :sex,
       :city,
       :state,
