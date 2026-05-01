@@ -30,6 +30,11 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem "httparty"
+
+gem "dotenv-rails"
+gem "sidekiq"
+
 gem "kaminari"
 
 # Reduces boot times through caching; required in config/boot.rb

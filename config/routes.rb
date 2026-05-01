@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index", as: :dashboard
 
     resources :clients, only: [ :index, :show ] do
-      resources :diets
+      resources :diets do
+        member do
+          post :send_whatsapp
+        end
+      end
     end
 
     resource :profile, only: [ :show, :edit, :update ]

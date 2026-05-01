@@ -52,6 +52,14 @@ class Professionals::DietsController < Professionals::BaseController
     redirect_to professionals_client_path(@client), notice: "Dieta removida com sucesso."
   end
 
+  def send_whatsapp
+    @diet = @client.diets.find(params[:id])
+
+    Whatsapp::SendDietJob.perform_async(@diet.id)
+
+    redirect_to professionals_client_diet_path(@client, @diet), notice: "Envio iniciado com sucesso."
+  end
+
   private
 
   def set_client
