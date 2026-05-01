@@ -34,4 +34,20 @@ class Users::SessionsController < Devise::SessionsController
       render "devise/sessions/new_professional", status: :unprocessable_entity
     end
   end
+
+  def create
+    user = User.find_by(email: params[:user][:email].to_s.downcase.strip)
+
+    if user&.valid_password?(params[:user][:password] && user.client?)
+      sign_in(:user, user)
+
+      redirect_to clients_dashboard_path
+    else
+      flash.now[:alert] = "Email ou senha inválidos"
+
+      self.resource = resource_class.new(sign_in_params)
+
+      render :new, status: :unprocessable_entity
+    end
+  end
 end

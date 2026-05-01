@@ -29,10 +29,15 @@ Rails.application.routes.draw do
   get "users/onboarding"
   get "dashboard/client"
 
-  devise_for :users
+  devise_for :users,
+    controllers: {
+      sessions: "users/sessions"
+    }
 
   get "home/index"
   root "home#index"
+
+  get "login", to: "sessions#select"
 
   devise_scope :user do
     get "admin/login", to: "users/sessions#new_admin", as: :new_admin_session
