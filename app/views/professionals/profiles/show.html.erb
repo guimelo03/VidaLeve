@@ -1,0 +1,63 @@
+<div class="container-lg py-5">
+
+  <div class="mb-4">
+
+    <%= link_to professionals_dashboard_path,
+      class: "btn btn-soft btn-pill" do %>
+
+      <i class="bi bi-arrow-left"></i>
+      Voltar
+
+    <% end %>
+
+    <%= link_to edit_professionals_profile_path,
+      class: "btn btn-primary btn-pill" do %>
+
+      <i class="bi bi-pencil"></i>
+      Editar
+
+    <% end %>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-8">
+
+      <div class="row">
+
+        <div class="col-12 mb-4">
+
+          <%= render "users/profile_section",
+            title: "Informações profissionais" do %>
+
+            <%= render "users/profile_field",
+              label: "Nome completo",
+              value: @user.full_name %>
+
+            <%= render "users/profile_field",
+              label: "E-mail",
+              value: @user.email %>
+
+            <%= render "users/profile_field",
+              label: "Telefone",
+              value: format_phone(@user.phone) %>
+
+          <% end %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 d-flex justify-content-end">
+
+      <%= render "users/profile_sidebar",
+        user: @user %>
+
+    </div>
+
+  </div>
+
+</div>

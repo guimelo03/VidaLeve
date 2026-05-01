@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :clients, only: [ :index, :show ] do
       resources :diets
     end
+
+    resource :profile, only: [ :show, :edit, :update ]
   end
 
   get "users/onboarding"
