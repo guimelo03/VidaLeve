@@ -1,4 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
+  before_action :logout_non_clients_from_client_login, only: [ :new, :create ]
+
   def new_admin
     self.resource = resource_class.new
     render :new_admin
@@ -36,12 +38,17 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def create
-    user = User.find_by(email: params[:user][:email].to_s.downcase.strip)
+    user = User.find_by(
+      email: params[:user][:email].to_s.downcase.strip
+    )
 
-    if user&.valid_password?(params[:user][:password] && user.client?)
+    if user&.valid_password?(params[:user][:password]) &&
+      user.client?
+
       sign_in(:user, user)
 
       redirect_to clients_dashboard_path
+
     else
       flash.now[:alert] = "Email ou senha inválidos"
 
@@ -49,5 +56,18 @@ class Users::SessionsController < Devise::SessionsController
 
       render :new, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def logout_non_clients_from_client_login
+    return unless current_user.present?
+    return if current_user.client?
+
+    sign_out(current_user)
+
+    flash[:alert] = "Email ou senha inválidos"
+
+    redirect_to login_path
   end
 end
