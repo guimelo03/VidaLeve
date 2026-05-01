@@ -7,52 +7,30 @@
     </h2>
 
     <%= link_to "Voltar",
-      admin_users_path,
+      professionals_clients_path,
       class: "btn btn-soft btn-pill" %>
 
   </div>
-
-
-  <% if @user.professional.present? %>
-
-    <p class="text-muted mb-4">
-
-      Atualmente vinculado a:
-      <strong><%= @user.professional.full_name %></strong>
-
-    </p>
-
-  <% else %>
-
-    <p class="text-muted mb-4">
-
-      Nenhum profissional vinculado ainda.
-
-    </p>
-
-  <% end %>
 
   <div class="row">
 
     <div class="col-lg-8">
 
       <%= render "users/client_info",
-        user: @user %>
+        user: @client %>
 
       <%= render "users/client_diets",
-        user: @user,
+        user: @client,
         diets: @diets,
-        view_context: :admin %>
-
-      <%= render "admin/users/professional_assignment",
-        user: @user %>
+        view_context: :professional 
+      %>
 
     </div>
 
     <div class="col-lg-4 d-flex justify-content-end">
 
       <%= render "users/profile_sidebar",
-        user: @user %>
+        user: @client %>
 
     </div>
 

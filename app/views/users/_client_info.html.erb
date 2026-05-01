@@ -1,0 +1,94 @@
+<div class="row">
+
+  <div class="col-md-6 mb-4">
+
+    <%= render "users/profile_section",
+      title: "Dados pessoais" do %>
+
+      <%= render "users/profile_field",
+        label: "Nome",
+        value: user.full_name %>
+
+      <%= render "users/profile_field",
+        label: "Telefone/Celular",
+        value: format_phone(user.phone) %>
+
+      <%= render "users/profile_field",
+        label: "Email",
+        value: user.email %>
+
+      <%= render "users/profile_field",
+        label: "Idade",
+        value: user.age %>
+
+      <%= render "users/profile_field",
+        label: "Sexo",
+        value: user.sex&.humanize %>
+
+      <%= render "users/profile_field",
+        label: "Cidade",
+        value: "#{user.city} - #{user.state}" %>
+
+      <%= render "users/profile_field",
+        label: "Profissão",
+        value: user.profession %>
+
+      <%= render "users/profile_field",
+        label: "Rotina",
+        value: user.work_routine %>
+
+    <% end %>
+
+  </div>
+
+  <div class="col-md-6 mb-4">
+
+    <%= render "users/profile_section",
+      title: "Informações físicas" do %>
+
+      <%= render "users/profile_field",
+        label: "Peso",
+        value: "#{user.current_weight} kg" %>
+
+      <%= render "users/profile_field",
+        label: "Altura",
+        value: "#{user.height} m" %>
+
+      <%= render "users/profile_field",
+        label: "Mediu com fita",
+        value: user.measured_with_tape ? "Sim" : "Não" %>
+
+      <%= render "users/profile_field",
+        label: "Circunferência",
+        value: "#{user.abdominal_circumference} cm" %>
+
+      <% if user.measurement_notes.present? %>
+
+        <%= render "users/profile_field",
+          label: "Observação",
+          value: user.measurement_notes %>
+
+      <% end %>
+
+      <%= render "users/profile_field",
+        label: "Objetivo",
+        value: user.main_goal&.humanize %>
+
+    <% end %>
+
+  </div>
+
+  <div class="col-12">
+
+    <%= render "users/profile_section",
+      title: "O que mais incomoda" do %>
+
+      <p class="mb-0">
+        <%= user.main_discomfort.presence || "-" %>
+      </p>
+
+    <% end %>
+
+  </div>
+
+</div>

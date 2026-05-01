@@ -1,0 +1,80 @@
+<div class="auth-page-wrapper">
+
+  <div class="auth-card">
+
+    <div class="text-center mb-4">
+
+      <h1 class="fw-bold mb-2">
+        Cadastro profissional
+      </h1>
+
+      <p class="text-muted mb-0">
+        Crie sua conta para começar.
+      </p>
+
+    </div>
+
+    <%= form_with model: resource,
+      url: professional_registration_path,
+      local: true do |f| %>
+
+      <div class="mb-3">
+
+        <%= f.text_field :full_name,
+          class: "form-control",
+          placeholder: "Seu nome",
+          required: true %>
+
+      </div>
+
+      <div class="mb-3">
+
+        <%= f.email_field :email,
+          class: "form-control",
+          placeholder: "Seu email",
+          required: true %>
+
+      </div>
+
+      <div class="mb-3">
+
+        <%= f.password_field :password,
+          class: "form-control",
+          placeholder: "Sua senha",
+          required: true %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= f.password_field :password_confirmation,
+          class: "form-control",
+          placeholder: "Confirmar senha",
+          required: true %>
+
+      </div>
+
+      <%= f.submit "Criar conta",
+        class: "btn btn-primary btn-pill w-100" %>
+
+    <% end %>
+
+    <div class="text-center mt-4">
+
+      <small class="text-muted">
+        Já possui conta?
+      </small>
+
+      <div class="mt-2">
+
+        <%= link_to "Entrar",
+          new_professional_session_path,
+          class: "btn btn-soft btn-pill" %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

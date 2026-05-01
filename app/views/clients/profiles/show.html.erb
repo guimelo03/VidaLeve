@@ -1,101 +1,82 @@
 <div class="container-lg py-5">
 
-  <div class="mb-4">
-    <%= link_to clients_dashboard_path, class: "btn btn-soft btn-pill" do %>
+
+  <div class="mb-4 d-flex gap-2">
+
+    <%= link_to clients_dashboard_path,
+      class: "btn btn-soft btn-pill" do %>
+
       <i class="bi bi-arrow-left"></i>
       Voltar
+
     <% end %>
 
     <% if current_user.has_complete_info? %>
+
       <%= link_to edit_clients_profile_path,
         class: "btn btn-primary btn-pill" do %>
 
         <i class="bi bi-pencil"></i>
         Editar
+
       <% end %>
 
     <% else %>
+
       <button class="btn btn-primary btn-pill"
               data-bs-toggle="modal"
               data-bs-target="#onboardingModal">
 
         <i class="bi bi-lock"></i>
         Completar perfil para editar
+
       </button>
+
     <% end %>
+
   </div>
 
   <div class="row">
+
     <div class="col-lg-8">
 
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <%= render "clients/profiles/profile_section", title: "Dados pessoais" do %>
+      <%= render "users/client_info",
+        user: @user %>
 
-            <%= render "clients/profiles/profile_field", label: "Telefone", value: format_phone(@user.phone) %>
-            <%= render "clients/profiles/profile_field", label: "Idade", value: @user.age %>
-            <%= render "clients/profiles/profile_field", label: "Sexo", value: @user.sex&.humanize %>
-            <%= render "clients/profiles/profile_field", label: "Cidade", value: "#{@user.city} - #{@user.state}" %>
-            <%= render "clients/profiles/profile_field", label: "Profissão", value: @user.profession %>
-            <%= render "clients/profiles/profile_field", label: "Rotina", value: @user.work_routine %>
-
-          <% end %>
-        </div>
-
-        <div class="col-md-6 mb-4">
-          <%= render "clients/profiles/profile_section", title: "Informações fisiológicas" do %>
-
-            <%= render "clients/profiles/profile_field", label: "Peso", value: "#{@user.current_weight} kg" %>
-            <%= render "clients/profiles/profile_field", label: "Altura", value: "#{@user.height} m" %>
-            <%= render "clients/profiles/profile_field", label: "Circunferência", value: "#{@user.abdominal_circumference} cm" %>
-
-            <%= render "clients/profiles/profile_field",
-              label: "Mediu com fita",
-              value: @user.measured_with_tape ? "Sim" : "Não" %>
-
-            <% if @user.measurement_notes.present? %>
-              <%= render "clients/profiles/profile_field",
-                label: "Observação",
-                value: @user.measurement_notes %>
-            <% end %>
-
-            <%= render "clients/profiles/profile_field",
-              label: "Objetivo",
-              value: @user.main_goal&.humanize %>
-
-          <% end %>
-        </div>
-
-        <div class="col-12">
-          <%= render "clients/profiles/profile_section", title: "O que mais incomoda" do %>
-            <p><%= @user.main_discomfort.presence || "-" %></p>
-          <% end %>
-        </div>
-
-      </div>
     </div>
 
     <div class="col-lg-4 d-flex justify-content-end">
+
       <div class="profile-sidebar me-4">
 
         <div class="avatar-large mb-3">
+
           <i class="bi bi-person"></i>
+
         </div>
 
         <h4 class="fw-semibold mb-1">
+
           <%= @user.full_name.presence || @user.email %>
+
         </h4>
 
         <p class="text-muted small">
+
           <%= @user.email %>
+
         </p>
 
         <span class="profile-status <%= @user.has_complete_info? ? 'complete' : 'incomplete' %>">
+
           <%= @user.has_complete_info? ? "Cadastro completo" : "Cadastro incompleto" %>
+
         </span>
 
       </div>
+
     </div>
+
   </div>
 
 </div>

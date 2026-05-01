@@ -47,16 +47,4 @@ class Admin::DietsController < ApplicationController
   def set_diet
     @diet = @user.diets.find(params[:id])
   end
-
-  def diet_params
-    params.require(:diet).permit(
-      :title,
-      meals_attributes: [
-        :id, :name, :_destroy,
-        meal_items_attributes: [
-          :id, :name, :quantity, :_destroy
-        ]
-      ]
-    )
-  end
 end

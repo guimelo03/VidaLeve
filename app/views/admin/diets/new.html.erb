@@ -4,13 +4,13 @@
     <h2>Nova dieta</h2>
 
     <%= link_to "Voltar",
-      admin_user_path(@user),
+      diet_back_path(@diet.user),
       class: "btn btn-soft btn-pill" %>
   </div>
 
   <div class="bg-white p-4 rounded-4 shadow-sm">
 
-    <%= form_with model: [ :admin, @user, @diet ] do |f| %>
+    <%= form_with model: @diet, url: diets_path_for(@user) do |f| %>
 
       <%= f.text_field :title,
         class: "form-control mb-4",

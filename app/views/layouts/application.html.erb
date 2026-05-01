@@ -37,7 +37,7 @@
 
     <%= yield %>
 
-    <% if user_signed_in? && !current_user.has_complete_info? %>
+    <% if user_signed_in? && !current_user.has_complete_info?  && current_user.client?%>
       <%= render "shared/onboard_modal" %>
     <% end %>
   </body>

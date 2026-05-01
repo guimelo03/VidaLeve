@@ -1,0 +1,27 @@
+<div class="profile-sidebar me-4">
+
+  <div class="avatar-large mb-3">
+
+    <i class="bi bi-person"></i>
+
+  </div>
+
+  <h4 class="fw-semibold mb-1">
+
+    <%= user.full_name.presence || user.email %>
+
+  </h4>
+
+  <p class="text-muted small">
+
+    <%= user.email %>
+
+  </p>
+
+  <span class="profile-status <%= user.has_complete_info? ? 'complete' : 'incomplete' %>">
+
+    <%= user.has_complete_info? ? "Cadastro completo" : "Cadastro incompleto" %>
+
+  </span>
+
+</div>

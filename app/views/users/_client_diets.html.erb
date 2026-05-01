@@ -1,0 +1,72 @@
+<div class="bg-white p-4 rounded-4 shadow-sm mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h5 class="mb-0">
+      Dietas do cliente
+    </h5>
+
+    <% if view_context == :admin %>
+
+      <%= link_to "Nova dieta",
+        new_admin_user_diet_path(user),
+        class: "btn btn-primary btn-pill btn-sm" %>
+
+    <% elsif view_context == :professional %>
+
+      <%= link_to "Nova dieta",
+        new_professionals_client_diet_path(user),
+        class: "btn btn-primary btn-pill btn-sm" %>
+
+    <% end %>
+
+  </div>
+
+  <% if diets.any? %>
+
+    <% diets.each do |diet| %>
+
+      <div class="d-flex justify-content-between align-items-center border rounded-4 p-3 mb-3">
+
+        <div>
+
+          <h6 class="fw-semibold mb-1">
+            <%= diet.title %>
+          </h6>
+
+          <small class="text-muted">
+
+            Criada em
+            <%= l(diet.created_at.to_date, format: :short) %>
+
+          </small>
+
+        </div>
+
+        <% if view_context == :admin %>
+
+          <%= link_to "Ver detalhes",
+            admin_user_diet_path(user, diet),
+            class: "btn btn-soft btn-pill btn-sm" %>
+
+        <% elsif view_context == :professional %>
+
+          <%= link_to "Ver detalhes",
+            professionals_client_diet_path(user, diet),
+            class: "btn btn-soft btn-pill btn-sm" %>
+
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  <% else %>
+
+    <p class="text-muted mb-0">
+      Nenhuma dieta cadastrada ainda.
+    </p>
+
+  <% end %>
+
+</div>

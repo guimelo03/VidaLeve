@@ -1,0 +1,30 @@
+<div class="bg-white p-4 rounded-4 shadow-sm mt-4">
+
+  <h5 class="mb-3">
+    Profissional responsável
+  </h5>
+
+  <%= form_with model: user,
+    url: assign_professional_admin_user_path(user),
+    method: :patch,
+    local: true do |f| %>
+
+    <div class="mb-3">
+
+      <%= f.collection_select :professional_id,
+        User.professional,
+        :id,
+        :full_name,
+        {
+          prompt: "Selecione um profissional"
+        },
+        class: "form-select" %>
+
+    </div>
+
+    <%= f.submit "Salvar vínculo",
+      class: "btn btn-primary btn-pill" %>
+
+  <% end %>
+
+</div>

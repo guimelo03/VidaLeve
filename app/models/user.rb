@@ -11,7 +11,11 @@ class User < ApplicationRecord
     maintain: 3
   }
 
+  belongs_to :professional, class_name: "User", optional: true
+
   has_many :diets, dependent: :destroy
+  has_many :clients, class_name: "User", foreign_key: :professional_id, dependent: :nullify
+  has_many :client_diets, through: :clients, source: :diets
 
   validates :role, presence: true
 
@@ -33,6 +37,8 @@ class User < ApplicationRecord
   end
 
   def check_complete_info
+    return unless client?
+
     required = [
       full_name,
       age,

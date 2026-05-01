@@ -1,6 +1,6 @@
 <div class="container py-5" data-controller="nested-form" style="max-width: 720px;">
 
-  <%= form_with model: [:admin, @user, @diet], local: true do |f| %>
+  <%= form_with model: @diet, url: diet_path(@user, @diet), method: :patch, local: true do |f| %>
 
     <%= f.text_field :title,
       class: "form-control mb-4",

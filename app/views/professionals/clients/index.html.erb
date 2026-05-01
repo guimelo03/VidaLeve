@@ -1,0 +1,173 @@
+<div class="container-lg py-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-5">
+
+    <div>
+
+      <h1 class="fw-bold mb-1">
+        Meus clientes
+      </h1>
+
+      <p class="text-muted mb-0">
+        Gerencie os clientes vinculados ao seu acompanhamento.
+      </p>
+
+    </div>
+
+    <div>
+
+      <span class="badge rounded-pill text-bg-light px-3 py-2">
+
+        <i class="bi bi-people me-1"></i>
+
+        <%= @clients.count %> clientes
+
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-card">
+
+    <% if @clients.any? %>
+
+      <div class="table-responsive">
+
+        <table class="table align-middle mb-0">
+
+          <thead>
+
+            <tr>
+
+              <th>Cliente</th>
+
+              <th>Email</th>
+
+              <th>Telefone</th>
+
+              <th>Status</th>
+
+              <th class="text-end">Ações</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <% @clients.each do |client| %>
+
+              <tr>
+
+                <td>
+
+                  <div class="d-flex align-items-center gap-3">
+
+                    <div class="client-avatar">
+
+                      <i class="bi bi-person"></i>
+
+                    </div>
+
+                    <div>
+
+                      <div class="fw-semibold">
+
+                        <%= client.full_name.presence || "Cliente sem nome" %>
+
+                      </div>
+
+                      <small class="text-muted">
+
+                        Desde
+                        <%= l(client.created_at.to_date, format: :short) %>
+
+                      </small>
+
+                    </div>
+
+                  </div>
+
+                </td>
+
+                <td>
+
+                  <%= client.email %>
+
+                </td>
+
+
+                <td>
+
+                  <%= format_phone(client.phone) if client.phone.present? %>
+
+                </td>
+
+                <td>
+
+                  <% if client.has_complete_info? %>
+
+                    <span class="badge rounded-pill text-bg-success">
+                      Completo
+                    </span>
+
+                  <% else %>
+
+                    <span class="badge rounded-pill text-bg-warning">
+                      Incompleto
+                    </span>
+
+                  <% end %>
+
+                </td>
+
+                <td class="text-end">
+
+                  <%= link_to professionals_client_path(client),
+                    class: "btn btn-soft btn-sm btn-pill" do %>
+
+                    <i class="bi bi-eye"></i>
+                    Ver detalhes
+
+                  <% end %>
+
+                </td>
+
+              </tr>
+
+            <% end %>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    <% else %>
+
+      <div class="text-center py-5">
+
+        <div class="mb-3">
+
+          <i class="bi bi-people fs-1 text-muted"></i>
+
+        </div>
+
+        <h4 class="fw-semibold mb-2">
+          Nenhum cliente vinculado
+        </h4>
+
+        <p class="text-muted mb-0">
+          Quando clientes forem vinculados ao seu perfil,
+          eles aparecerão aqui.
+        </p>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>

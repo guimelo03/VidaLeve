@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_30_181934) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_01_140252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -56,6 +56,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_181934) do
     t.text "measurement_notes"
     t.string "phone"
     t.string "profession"
+    t.bigint "professional_id"
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
@@ -65,10 +66,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_181934) do
     t.datetime "updated_at", null: false
     t.string "work_routine"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["professional_id"], name: "index_users_on_professional_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "diets", "users"
   add_foreign_key "meal_items", "meals"
   add_foreign_key "meals", "diets"
+  add_foreign_key "users", "users", column: "professional_id"
 end
