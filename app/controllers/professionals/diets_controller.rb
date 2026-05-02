@@ -55,7 +55,7 @@ class Professionals::DietsController < Professionals::BaseController
   def send_whatsapp
     @diet = @client.diets.find(params[:id])
 
-    Whatsapp::SendDietService.new(@diet.id).call
+    Whatsapp::SendDietService.new(@diet).call
 
     redirect_to professionals_client_diet_path(@client, @diet), notice: "Envio iniciado com sucesso."
   end
