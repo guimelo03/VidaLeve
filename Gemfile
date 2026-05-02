@@ -32,6 +32,12 @@ gem "solid_cable"
 
 gem "kaminari"
 
+gem "sidekiq"
+
+gem "twilio-ruby"
+
+gem "dotenv"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

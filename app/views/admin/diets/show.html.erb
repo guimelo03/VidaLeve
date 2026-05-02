@@ -53,6 +53,15 @@
       </div>
 
     <% end %>
+
+    <% if current_user.professional? %>
+
+      <%= button_to "Enviar no WhatsApp",
+        send_whatsapp_professionals_client_diet_path(@user, @diet),
+        method: :post,
+        class: "btn btn-success btn-pill" %>
+
+    <% end %>
   </ul>
 
 </div>
